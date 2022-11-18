@@ -136,16 +136,6 @@ Once the flask webapp is deployed in azure app service now we can configure the 
 Screenshot of pipeline stages flow
 ![azure pipeline](./screenshots/azurepipeline.png)
 
-Screenshot of a successful run of the project in Azure Pipelines
-![azure pipeline deployment](./screenshots/pipelinedeployment.png)
-**3. Logs**.  
-
-logs of the running application.  
-
-```
-$az webapp log tail -n vraghu-flask-webapp -g proj6
-```
-
 ** Load Testing**.
 
 Modify the Makefile and add `pip install locust` and `pip install locust-plugins` inside install tag, the run the commnad.  
@@ -157,7 +147,7 @@ locust -f locustfile.py
 
 Screenshot to show the result of load testing
 
-![locust result](./images/locustlogs.png)
+![locust result](./screenshots/locustlogs.png)
 
 ## Demo 
 
