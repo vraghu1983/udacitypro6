@@ -1,44 +1,46 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
 trigger:
 - main
 
+pool:
+  vmImage: myAgentPool
 
 variables:
-  # Replace the service connection name
-  azureServiceConnectionId: 'flask-ml-sp'
+  # TODO: Replace the service connection name
+  azureServiceConnectionId: 'arm_service_connect'
   
-  # Replace 'mywebapp193576' with the existing Web App name
-  webAppName: 'flaskwebappproject'
+  # TODO: Replace 'mywebapp193576' with the existing Web App name
+  webAppName: 'vraghu-flask-webapp'
 
   # Environment name
-  environmentName: 'Flask-ML-project'
-
-  # Agent pool name
-  pool: flaskapp
+  environmentName: 'flask-ml-service'
 
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
-
-  # Python version: 3.7
-  pythonVersion: '3.7'
 
 stages:
 - stage: Build
   displayName: Build stage
   jobs:
   - job: BuildJob
-    pool: $(pool)
+    pool: myagentpool
     steps:    
     - script: |
         python3.7 -m pip install --upgrade pip
         python3.7 -m pip install setup
+        python3.7 -m pip install wheel
         python3.7 -m pip install -r requirements.txt
       workingDirectory: $(projectRoot)
     - script: |
         export PATH=$HOME/.local/bin:$PATH
-        make install
-        make lint
+        export PYTHONPATH=$HOME/.local/lib/python3.7/site-packages
+        make all
       workingDirectory: $(projectRoot)
-      displayName: 'Run lint tests'
+      displayName: 'Run lint and tests'
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
@@ -47,7 +49,7 @@ stages:
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
-    
+
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       displayName: 'Upload package'
       artifact: drop
@@ -58,15 +60,20 @@ stages:
   condition: succeeded()
   jobs:
   - deployment: DeploymentJob
-    pool: $(pool)
+    pool: myagentpool
     environment: $(environmentName)
     strategy:
       runOnce:
         deploy:
           steps:
           - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App : Flask-ML-project'
+            displayName: 'Deploy Azure Web App : flask-ml-service'
             inputs:
               azureSubscription: $(azureServiceConnectionId)
               appName: $(webAppName)
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
+          - task: AzureAppServiceManage@0
+            inputs:
+              azureSubscription: $(azureServiceConnectionId)
+              Action: 'Restart Azure App Service'
+              WebAppName: $(webAppName)
