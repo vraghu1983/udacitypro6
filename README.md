@@ -54,7 +54,7 @@ We will [ssh key pair](https://docs.github.com/en/authentication/connecting-to-g
 Run make all which will install, lint, and test code. This enables us to ensure we don't check in broken code to GitHub as it installs, lints, and tests the code in one command. 
 
 ```
-$cd azure-ci-cd/
+$cd udacitypro6/
 ```
 ```
 $python -m venv ~/.myrepo
