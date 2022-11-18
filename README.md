@@ -1,4 +1,4 @@
-![Github Actions Build Status](https://github.com/vraghu1983/udacitypro6/actions)
+
 ## Overview
 
 In this project, I have build a Github repository from scratch and created a scaffolding that assisted in performing both Continuous Integration and Continuous Delivery. I have used Github Actions along with a Makefile, requirements.txt and application code to perform an initial lint, test, and install cycle and integrated this project with Azure Pipelines to enable Continuous Delivery to Azure App Service.
