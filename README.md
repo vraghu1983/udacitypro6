@@ -10,7 +10,7 @@ In this project, I have build a Github repository from scratch and created a sca
 
 ## Instructions
 
-Top Level architecurte diagram.
+Top Level architecture diagram.
 
 ![building-a-ci-cd-pipeline](./screenshots/architecture.png)
 
