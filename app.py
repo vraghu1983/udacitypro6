@@ -14,24 +14,46 @@ def scale(payload):
     """Scales Payload"""
 
     LOG.info("Scaling Payload: %s payload")
-    scaler = StandardScaler().fit(payload)
+    scaler = StandardScaler(with_mean=False).fit(payload)
     scaled_adhoc_predict = scaler.transform(payload)
     return scaled_adhoc_predict
 
 @app.route("/")
 def home():
-    html = "<h3>Raghu V Sklearn Prediction Home</h3>"
+    html = "<h3>Raghu V Sklearn Prediction Home trial</h3>"
     return html.format(format)
 
 # TO DO:  Log out the prediction value
 @app.route("/predict", methods=['POST'])
 def predict():
-    # Performs an sklearn prediction
+    """Performs an sklearn prediction
+    input looks like:
+            {
+    "CHAS":{
+      "0":0
+    },
+    "RM":{
+      "0":6.575
+    },
+    "TAX":{
+      "0":296.0
+    },
+    "PTRATIO":{
+       "0":15.3
+    },
+    "B":{
+       "0":396.9
+    },
+    "LSTAT":{
+       "0":4.98
+    }
+    result looks like:
+    { "prediction": [ 20.35373177134412 ] }
+    """
+
     try:
-        # Load pretrained model as clf. Try any one model. 
-        # clf = joblib.load("./Housing_price_model/LinearRegression.joblib")
-        # clf = joblib.load("./Housing_price_model/StochasticGradientDescent.joblib")
-        clf = joblib.load("./Housing_price_model/GradientBoostingRegressor.joblib")
+        clf = joblib.load("boston_housing_prediction.joblib")
+        clf = clf[0][0]
     except:
         LOG.info("JSON payload: %s json_payload")
         return "Model not loaded"
