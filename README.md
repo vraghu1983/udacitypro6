@@ -1,3 +1,6 @@
+[![GitHubActions](https://github.com/vraghu1983/udacitypro6/actions/workflows/main.yml/badge.svg)](https://github.com/vraghu1983/udacitypro6/actions/workflows/main.yml)
+
+
 ## Overview
 
 In this project, I have build a Github repository from scratch and created a scaffolding that assisted in performing both Continuous Integration and Continuous Delivery. I have used Github Actions along with a Makefile, requirements.txt and application code to perform an initial lint, test, and install cycle and integrated this project with Azure Pipelines to enable Continuous Delivery to Azure App Service.
@@ -6,6 +9,7 @@ In this project, I have build a Github repository from scratch and created a sca
 
 ## Project Plan
 
+* Trello board Link :- [Trellolink](https://trello.com/invite/b/bx4fGc2Q/ATTI1695c9da29fd9b3cc9992edd7c1680967B79015C/ci-cd-pipeline)
 * Spreadsheet project plan:- [google docs link](https://docs.google.com/spreadsheets/d/1EMldvDwRq7ECj56jEqvG-qdYlIkfwB4Tvdkx-X1jdYY/edit?usp=sharing)
 
 ## Instructions
@@ -116,6 +120,8 @@ In this example the App Service is called `vraghu-flask-webapp` and the resource
 ```
 az webapp up --name vraghu-flask-webapp --resource-group proj6 --runtime "PYTHON:3.7"
 ```
+Screenshot of web app running in bash
+![webapp azure portal](./screenshots/webapprun.png)
 
 Screenshot of azure app service running in azure portal
 ![webapp azure portal](./screenshots/webappazure.png)
