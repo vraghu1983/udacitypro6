@@ -1,4 +1,3 @@
-
 ## Overview
 
 In this project, I have build a Github repository from scratch and created a scaffolding that assisted in performing both Continuous Integration and Continuous Delivery. I have used Github Actions along with a Makefile, requirements.txt and application code to perform an initial lint, test, and install cycle and integrated this project with Azure Pipelines to enable Continuous Delivery to Azure App Service.
@@ -11,7 +10,7 @@ In this project, I have build a Github repository from scratch and created a sca
 
 ## Instructions
 
-Top Level architecurte diagram.
+Top Level architecture diagram.
 
 ![building-a-ci-cd-pipeline](./screenshots/architecture.png)
 
@@ -19,7 +18,7 @@ These diagram shows the sequence and component required to build the ci/cd pipel
 
 Lets go to each components one by one.
 
-### 1. Prerequisite
+### Prerequisite
 This project required the python 3.7 make sure you are using this version locally as well as in azure cloud shell.  
 Steps to install python 3.7 in linux machine.  
 
@@ -36,7 +35,7 @@ $export PATH=~/miniconda3/bin:$PATH
 $python -V
 ```
 
-### 2. Continuous Integration
+### Continuous Integration
 Continouse Integration setup is divided into two parts, one is setting up azure cloud shell enviroment to run it locally on azure shell using makefile to test install and setup, seconds step is configure github actions to perform CI remotely.
 
 #### CI: Set Up Azure Cloud Shell
@@ -46,7 +45,7 @@ In this diagram, the Azure Cloud Shell is used to create an empty scaffold of te
 
 our code already contains the Makefile, requirement.txt, so we will go ahead and setup [github repo](https://docs.github.com/en/get-started/quickstart/create-a-repo) and create a azure cloud shell.  
 
-**1. Cloud-Based Development Environment**. 
+**Cloud-Based Development Environment**. 
 
 We will [ssh key pair](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) for cloning the github repo into azure cloud shell
 
@@ -55,7 +54,7 @@ We will [ssh key pair](https://docs.github.com/en/authentication/connecting-to-g
 Run make all which will install, lint, and test code. This enables us to ensure we don't check in broken code to GitHub as it installs, lints, and tests the code in one command. 
 
 ```
-$cd azure-ci-cd/
+$cd udacitypro6/
 ```
 ```
 $python -m venv ~/.myrepo
@@ -103,7 +102,7 @@ Github action is enable by ui, check the yml file at path .github/main.yml, see 
 
 ![github action build](./screenshots/github_action_build.png)
 
-### 3. Continuous Delivery
+### Continuous Delivery
 
 This diagram shows the continuous delivery of a flask application through the use of Azure Pipelines and Azure App service.
 
@@ -126,7 +125,7 @@ Screenshot of webapp running in its url
 
 After creating the webapp in azure app service now we can run the prediction.
 
-**2. Azure Devops and Azure pipeline**.  
+**Azure Devops and Azure pipeline**.  
 
 Once the flask webapp is deployed in azure app service now we can configure the azure devops and azure pipeline for continous devlivery trigered on git changes.  
 
@@ -137,20 +136,7 @@ Once the flask webapp is deployed in azure app service now we can configure the 
 Screenshot of pipeline stages flow
 ![azure pipeline](./screenshots/azurepipeline.png)
 
-Screenshot of a successful run of the project in Azure Pipelines
-![azure pipeline deployment](./screenshots/pipelinedeployment.png)
-**3. Logs**.  
-
-logs of the running application.  
-
-```
-$az webapp log tail -n vraghu-flask-webapp -g proj6
-```
-
-Screenshot of logs
-![webapp logs](./screenshots/logs.png)
-
-**3. Load Testing**.
+** Load Testing**.
 
 Modify the Makefile and add `pip install locust` and `pip install locust-plugins` inside install tag, the run the commnad.  
 
@@ -161,8 +147,8 @@ locust -f locustfile.py
 
 Screenshot to show the result of load testing
 
-![locust result](./images/locustlogs.png)
+![locust result](./screenshots/locustlogs.png)
 
 ## Demo 
 
-Demo in youtube
+Demo in youtube [Link](https://youtu.be/bvOQTxDJtN0)
