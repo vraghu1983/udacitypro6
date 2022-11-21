@@ -14,11 +14,11 @@ git config --global user.email "example@mail.com"
 
 
 #azure app service
-az webapp up --name vraghu-flask-webapp --resource-group pro6 --runtime "PYTHON:3.7"
+az webapp up --name vraghu-flask-webapp --resource-group proj6 --runtime "PYTHON:3.7"
 
 #setup virtual enviroment
 # python -m venv ~/.myrepo
 # source ~/.myrepo/bin/activate
 
 #logs
-# az webapp log tail -n vraghu-flask-webapp -g pro6
+# az webapp log tail -n vraghu-flask-webapp -g proj6
