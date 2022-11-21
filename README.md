@@ -155,6 +155,12 @@ Screenshot to show the result of load testing
 
 ![locust result](./screenshots/locustlogs.png)
 
+## Enhancements
+1. Adding better test cases in continouse integration flow.
+2. Can use github action for continouse distrubtion.
+3. Interactive Web UI, for interacting with flask webapp and inputing predictions.
+4. can use gitflow(git branches and command), to setup different enviroment like, staging, production, development etc.
+
 ## Demo 
 
 Demo in youtube [Link](https://youtu.be/bvOQTxDJtN0)
