@@ -53,7 +53,7 @@ our code already contains the Makefile, requirement.txt, so we will go ahead and
 
 We will [ssh key pair](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) for cloning the github repo into azure cloud shell
 
-Since I forgot to take the screenshot of the repo, I created a new one for the review comments and placed it in [here](./screenshots/gitclone.png)
+Since I forgot to take the screenshot of the repo, I created a new one for the review comments and placed it in ![here](./screenshots/gitclone.png)
 
 
 ** Local Test**.  
